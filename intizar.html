@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تنفيذ الكل...</title>
+<title>تنفيذ...</title>
 <style>
   body{margin:0;font-family:sans-serif;background:#e9f1f6;color:#0d2f49;
     display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px}
@@ -20,18 +20,26 @@
 <div class="box">
   <div class="spin" id="spin"></div>
   <div class="ok" id="ok">✓</div>
-  <h2 id="title">جارٍ تنفيذ الكل...</h2>
+  <h2 id="title">جارٍ التنفيذ...</h2>
   <p id="sub">لحظات...</p>
 </div>
 <script>
   var URL = "https://script.google.com/macros/s/AKfycbyd9xUSCZ848GrqjkM-zqhTVxKkIZAdyYW7iy46FmyJSlkOemQZK1ih4Qrn7dBLmL1E2w/exec?action=intizar";
 
-  fetch(URL, {mode: 'no-cors'}).finally(function(){
+  // نستخدم <img> لضمان الاتصال يوصل للسيرفر (بدل fetch)
+  var img = new Image();
+  var done = function(){
     document.getElementById('spin').style.display='none';
     document.getElementById('ok').style.display='block';
     document.getElementById('title').textContent='تمت المعالجة';
     document.getElementById('sub').textContent='ممكن تقفل الصفحة';
-  });
+  };
+  img.onload = done;
+  img.onerror = done;
+  img.src = URL + "&t=" + Date.now();  // t=timestamp لمنع الكاش
+
+  // ضمان إضافي: بعد 5 ثواني نظهر التم لو لسه لسه
+  setTimeout(done, 5000);
 </script>
 </body>
 </html>
