@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تنفيذ الكل...</title>
+<style>
+  body{margin:0;font-family:sans-serif;background:#e9f1f6;color:#0d2f49;
+    display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px}
+  .box{background:#fff;padding:30px 40px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:400px}
+  .spin{width:40px;height:40px;border:3px solid #dff1f6;border-top-color:#0e7490;
+    border-radius:50%;margin:0 auto 16px;animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .ok{color:#0f9d6b;font-size:40px;margin-bottom:8px;display:none}
+  h2{margin:0 0 6px;font-size:18px}
+  p{margin:0;color:#5f7686;font-size:13px}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="spin" id="spin"></div>
+  <div class="ok" id="ok">✓</div>
+  <h2 id="title">جارٍ تنفيذ الكل...</h2>
+  <p id="sub">لحظات...</p>
+</div>
+<script>
+  var URL = "https://script.google.com/macros/s/AKfycbyd9xUSCZ848GrqjkM-zqhTVxKkIZAdyYW7iy46FmyJSlkOemQZK1ih4Qrn7dBLmL1E2w/exec?action=daman";
+
+  fetch(URL, {mode: 'no-cors'}).finally(function(){
+    document.getElementById('spin').style.display='none';
+    document.getElementById('ok').style.display='block';
+    document.getElementById('title').textContent='تمت المعالجة';
+    document.getElementById('sub').textContent='ممكن تقفل الصفحة';
+  });
+</script>
+</body>
+</html>
